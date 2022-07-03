@@ -15,6 +15,7 @@
 		358CC7A02871F3EE008D775F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC79F2871F3EE008D775F /* SecondViewController.swift */; };
 		358CC7A22871F405008D775F /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC7A12871F405008D775F /* FourthViewController.swift */; };
 		358CC7A42871F42C008D775F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC7A32871F42C008D775F /* CollectionViewController.swift */; };
+		358CC7A72871F76C008D775F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC7A62871F76C008D775F /* Strings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		358CC79F2871F3EE008D775F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		358CC7A12871F405008D775F /* FourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
 		358CC7A32871F42C008D775F /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		358CC7A62871F76C008D775F /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				358CC79A2871F394008D775F /* OtherViewControllers */,
 				358CC7992871F372008D775F /* MainCollectionViewController */,
+				358CC7A52871F757008D775F /* Entity */,
 				358CC7852871ECFC008D775F /* AppDelegate.swift */,
 				358CC78B2871ECFC008D775F /* Main.storyboard */,
 				358CC78E2871ECFE008D775F /* Assets.xcassets */,
@@ -87,6 +90,14 @@
 				358CC7A12871F405008D775F /* FourthViewController.swift */,
 			);
 			path = OtherViewControllers;
+			sourceTree = "<group>";
+		};
+		358CC7A52871F757008D775F /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				358CC7A62871F76C008D775F /* Strings.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +175,7 @@
 				358CC7A02871F3EE008D775F /* SecondViewController.swift in Sources */,
 				358CC79E2871F3C7008D775F /* FirstViewController.swift in Sources */,
 				358CC7862871ECFC008D775F /* AppDelegate.swift in Sources */,
+				358CC7A72871F76C008D775F /* Strings.swift in Sources */,
 				358CC7A42871F42C008D775F /* CollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
