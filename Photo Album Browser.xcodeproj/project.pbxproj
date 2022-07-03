@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		358CC7862871ECFC008D775F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC7852871ECFC008D775F /* AppDelegate.swift */; };
-		358CC7882871ECFC008D775F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC7872871ECFC008D775F /* SceneDelegate.swift */; };
-		358CC78A2871ECFC008D775F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC7892871ECFC008D775F /* ViewController.swift */; };
 		358CC78D2871ECFC008D775F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358CC78B2871ECFC008D775F /* Main.storyboard */; };
 		358CC78F2871ECFE008D775F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 358CC78E2871ECFE008D775F /* Assets.xcassets */; };
 		358CC7922871ECFE008D775F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358CC7902871ECFE008D775F /* LaunchScreen.storyboard */; };
+		358CC79E2871F3C7008D775F /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC79D2871F3C7008D775F /* FirstViewController.swift */; };
+		358CC7A02871F3EE008D775F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC79F2871F3EE008D775F /* SecondViewController.swift */; };
+		358CC7A22871F405008D775F /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC7A12871F405008D775F /* FourthViewController.swift */; };
+		358CC7A42871F42C008D775F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC7A32871F42C008D775F /* CollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		358CC7822871ECFC008D775F /* Photo Album Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Album Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		358CC7852871ECFC008D775F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		358CC7872871ECFC008D775F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		358CC7892871ECFC008D775F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		358CC78C2871ECFC008D775F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		358CC78E2871ECFE008D775F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		358CC7912871ECFE008D775F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		358CC7932871ECFE008D775F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		358CC79D2871F3C7008D775F /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		358CC79F2871F3EE008D775F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		358CC7A12871F405008D775F /* FourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
+		358CC7A32871F42C008D775F /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,33 @@
 		358CC7842871ECFC008D775F /* Photo Album Browser */ = {
 			isa = PBXGroup;
 			children = (
+				358CC79A2871F394008D775F /* OtherViewControllers */,
+				358CC7992871F372008D775F /* MainCollectionViewController */,
 				358CC7852871ECFC008D775F /* AppDelegate.swift */,
-				358CC7872871ECFC008D775F /* SceneDelegate.swift */,
-				358CC7892871ECFC008D775F /* ViewController.swift */,
 				358CC78B2871ECFC008D775F /* Main.storyboard */,
 				358CC78E2871ECFE008D775F /* Assets.xcassets */,
 				358CC7902871ECFE008D775F /* LaunchScreen.storyboard */,
 				358CC7932871ECFE008D775F /* Info.plist */,
 			);
 			path = "Photo Album Browser";
+			sourceTree = "<group>";
+		};
+		358CC7992871F372008D775F /* MainCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				358CC7A32871F42C008D775F /* CollectionViewController.swift */,
+			);
+			path = MainCollectionViewController;
+			sourceTree = "<group>";
+		};
+		358CC79A2871F394008D775F /* OtherViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				358CC79D2871F3C7008D775F /* FirstViewController.swift */,
+				358CC79F2871F3EE008D775F /* SecondViewController.swift */,
+				358CC7A12871F405008D775F /* FourthViewController.swift */,
+			);
+			path = OtherViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				358CC78A2871ECFC008D775F /* ViewController.swift in Sources */,
+				358CC7A22871F405008D775F /* FourthViewController.swift in Sources */,
+				358CC7A02871F3EE008D775F /* SecondViewController.swift in Sources */,
+				358CC79E2871F3C7008D775F /* FirstViewController.swift in Sources */,
 				358CC7862871ECFC008D775F /* AppDelegate.swift in Sources */,
-				358CC7882871ECFC008D775F /* SceneDelegate.swift in Sources */,
+				358CC7A42871F42C008D775F /* CollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
