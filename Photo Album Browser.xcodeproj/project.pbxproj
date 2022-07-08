@@ -20,6 +20,8 @@
 		35BAAE922878975A0087F7F0 /* PeopleAndPlacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAAE912878975A0087F7F0 /* PeopleAndPlacesCell.swift */; };
 		35BAAE94287897C90087F7F0 /* MediafilesTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAAE93287897C90087F7F0 /* MediafilesTypeCell.swift */; };
 		35BAAE97287898230087F7F0 /* HeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAAE96287898230087F7F0 /* HeadView.swift */; };
+		35BAAE99287899EB0087F7F0 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAAE98287899EB0087F7F0 /* Album.swift */; };
+		35BAAE9D28789A320087F7F0 /* Directories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BAAE9C28789A320087F7F0 /* Directories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		35BAAE912878975A0087F7F0 /* PeopleAndPlacesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleAndPlacesCell.swift; sourceTree = "<group>"; };
 		35BAAE93287897C90087F7F0 /* MediafilesTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediafilesTypeCell.swift; sourceTree = "<group>"; };
 		35BAAE96287898230087F7F0 /* HeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadView.swift; sourceTree = "<group>"; };
+		35BAAE98287899EB0087F7F0 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		35BAAE9C28789A320087F7F0 /* Directories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				358CC7A62871F76C008D775F /* Strings.swift */,
+				35BAAE98287899EB0087F7F0 /* Album.swift */,
+				35BAAE9C28789A320087F7F0 /* Directories.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -207,6 +213,8 @@
 				35BAAE922878975A0087F7F0 /* PeopleAndPlacesCell.swift in Sources */,
 				35BAAE94287897C90087F7F0 /* MediafilesTypeCell.swift in Sources */,
 				358CC79E2871F3C7008D775F /* FirstViewController.swift in Sources */,
+				35BAAE99287899EB0087F7F0 /* Album.swift in Sources */,
+				35BAAE9D28789A320087F7F0 /* Directories.swift in Sources */,
 				358CC7862871ECFC008D775F /* AppDelegate.swift in Sources */,
 				358CC7A72871F76C008D775F /* Strings.swift in Sources */,
 			);
