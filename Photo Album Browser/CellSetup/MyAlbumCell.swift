@@ -70,7 +70,11 @@ class MyAlbumCell: UICollectionViewCell {
 
         NSLayoutConstraint.activate([
             image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            image.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            image.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            image.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            image.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            image.topAnchor.constraint(equalTo: view.topAnchor),
         ])
 
         NSLayoutConstraint.activate([

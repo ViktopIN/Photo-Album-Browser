@@ -44,22 +44,22 @@ extension MainViewController {
             switch sectionType {
             case .myAlbums:
                 guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                              withReuseIdentifier: HeadView.reuseIdentifier,
-                                                                                              for: indexPath) as? HeadView else { fatalError() }
+                                                                                              withReuseIdentifier: AlbumHeadLayout.reuseIdentifier,
+                                                                                              for: indexPath) as? AlbumHeadLayout else { fatalError() }
                 supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
                 return supplementaryView
 
             case .peopleAndPlaces:
                 guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                              withReuseIdentifier: HeadView.reuseIdentifier,
-                                                                                              for: indexPath) as? HeadView else { fatalError() }
+                                                                                              withReuseIdentifier: AlbumHeadLayout.reuseIdentifier,
+                                                                                              for: indexPath) as? AlbumHeadLayout else { fatalError() }
                 supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
                 return supplementaryView
 
             case .mediafilesType:
                 guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                                              withReuseIdentifier: HeadView.reuseIdentifier,
-                                                                                              for: indexPath) as? HeadView else { fatalError() }
+                                                                                              withReuseIdentifier: AlbumHeadLayout.reuseIdentifier,
+                                                                                              for: indexPath) as? AlbumHeadLayout else { fatalError() }
                 supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
                 return supplementaryView
         }

@@ -1,14 +1,15 @@
 //
-//  HeadView.swift
+//  AlbumHeadLayout.swift
 //  Photo Album Browser
 //
-//  Created by t h a . m a m e rozz on 08.07.22.
+//  Created by t h a . m a m e rozz on 12.07.22.
 //
 
 import UIKit
 
-class HeadView: UICollectionReusableView {
-  static let reuseIdentifier = "header-reuse-identifier"
+class AlbumHeadLayout: UICollectionReusableView {
+
+    static let reuseIdentifier = "AlbumHeadLayout"
 
     let label: UILabel = {
         let label = UILabel()
@@ -18,11 +19,20 @@ class HeadView: UICollectionReusableView {
         return label
     }()
 
+    private let button: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Все", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        return button
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         clipsToBounds = true
         addSubview(label)
+        addSubview(button)
     }
 
     override func layoutSubviews() {
@@ -31,6 +41,11 @@ class HeadView: UICollectionReusableView {
         NSLayoutConstraint.activate([
             label.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
             label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            button.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
+            button.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -15)
         ])
     }
 
