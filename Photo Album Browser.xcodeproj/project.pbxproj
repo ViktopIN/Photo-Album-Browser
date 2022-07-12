@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350C4E55287DD468003D774D /* MainViewControllerDataSourceConfigurate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350C4E54287DD468003D774D /* MainViewControllerDataSourceConfigurate.swift */; };
 		358CC7862871ECFC008D775F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358CC7852871ECFC008D775F /* AppDelegate.swift */; };
 		358CC78D2871ECFC008D775F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 358CC78B2871ECFC008D775F /* Main.storyboard */; };
 		358CC78F2871ECFE008D775F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 358CC78E2871ECFE008D775F /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		350C4E54287DD468003D774D /* MainViewControllerDataSourceConfigurate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerDataSourceConfigurate.swift; sourceTree = "<group>"; };
 		358CC7822871ECFC008D775F /* Photo Album Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Photo Album Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		358CC7852871ECFC008D775F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		358CC78C2871ECFC008D775F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				35BAAE8C287893D80087F7F0 /* MainViewController.swift */,
+				350C4E54287DD468003D774D /* MainViewControllerDataSourceConfigurate.swift */,
 			);
 			path = MainCollectionViewController;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				35BAAE99287899EB0087F7F0 /* Album.swift in Sources */,
 				35BAAE9D28789A320087F7F0 /* Directories.swift in Sources */,
 				358CC7862871ECFC008D775F /* AppDelegate.swift in Sources */,
+				350C4E55287DD468003D774D /* MainViewControllerDataSourceConfigurate.swift in Sources */,
 				358CC7A72871F76C008D775F /* Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UICollectionViewDelegate {
+class MainViewController: UIViewController {
 //    MARK: - Properties
     static let sectionHeaderElementKind = "section-header-element-kind"
 
@@ -18,10 +18,13 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
     }
     
     var albumsCollectionView: UICollectionView! = nil
-    
+    var dataSource: UICollectionViewDiffableDataSource<Section, Album>! = nil
 //    MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureCollectionView()
+        configureDataSource()
             
         hierarchySetup()
         layoutSetup()
@@ -29,11 +32,11 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
     }
 //    MARK: - Settings
     private func hierarchySetup() {
-            
+        view.addSubview(albumsCollectionView)
     }
         
     private func layoutSetup() {
-            
+
     }
         
     private func viewSetup() {
@@ -56,15 +59,15 @@ class MainViewController: UIViewController, UICollectionViewDelegate {
 //MARK: - Extensions
 extension MainViewController {
   func configureCollectionView() {
-    let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: generateLayout())
-    view.addSubview(collectionView)
-    collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    collectionView.backgroundColor = .systemBackground
-    collectionView.delegate = self
-    collectionView.register(MyAlbumCell.self, forCellWithReuseIdentifier: MyAlbumCell.reuseIdentifer)
-    collectionView.register(PeopleAndPlacesCell.self, forCellWithReuseIdentifier: PeopleAndPlacesCell.reuseIdentifer)
-    collectionView.register(MediafilesTypeCell.self, forCellWithReuseIdentifier: MediafilesTypeCell.reuseIdentifer)
-    collectionView.register(
+      let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: generateLayout())
+      view.addSubview(collectionView)
+      collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+      collectionView.backgroundColor = .systemBackground
+    
+      collectionView.register(MyAlbumCell.self, forCellWithReuseIdentifier: MyAlbumCell.reuseIdentifer)
+      collectionView.register(PeopleAndPlacesCell.self, forCellWithReuseIdentifier: PeopleAndPlacesCell.reuseIdentifer)
+      collectionView.register(MediafilesTypeCell.self, forCellWithReuseIdentifier: MediafilesTypeCell.reuseIdentifer)
+      collectionView.register(
         HeadView.self,
       forSupplementaryViewOfKind: MainViewController.sectionHeaderElementKind,
       withReuseIdentifier: HeadView.reuseIdentifier)
@@ -78,8 +81,8 @@ extension MainViewController {
 
         let sectionLayoutKind = Section.allCases[sectionIndex]
         switch (sectionLayoutKind) {
-        case .myAlbums: return self.generateFeaturedAlbumsLayout(isWide: isWideView)
-        case .peopleAndPlaces: return self.generateSharedlbumsLayout()
+        case .myAlbums: return self.generateMyAlbumsLayout(isWide: isWideView)
+        case .peopleAndPlaces: return self.peopleAndPlacesCell()
         case .mediafilesType: return self.generateMyAlbumsLayout(isWide: isWideView)
         }
       }
@@ -87,34 +90,51 @@ extension MainViewController {
     }
     
     
-    func generateFeaturedAlbumsLayout(isWide: Bool) -> NSCollectionLayoutSection {
-      let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                            heightDimension: .fractionalWidth(2/3))
-      let item = NSCollectionLayoutItem(layoutSize: itemSize)
+    func generateMyAlbumsLayout(isWide: Bool) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
 
-      // Show one item plus peek on narrow screens, two items plus peek on wider screens
-      let groupFractionalWidth = isWide ? 0.475 : 0.95
-      let groupFractionalHeight: Float = isWide ? 1/3 : 2/3
-      let groupSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
-        heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
-      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-      group.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                     leading: 0,
+                                                     bottom: 10,
+                                                     trailing: 0)
 
-      let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .estimated(44))
-      let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-        layoutSize: headerSize,
-        elementKind: MainViewController.sectionHeaderElementKind, alignment: .top)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalHeight(1))
 
-      let section = NSCollectionLayoutSection(group: group)
-      section.boundarySupplementaryItems = [sectionHeader]
-      section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        let subGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                        subitem: item, count: 2)
+        subGroup.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                         leading: 0,
+                                                         bottom: 0,
+                                                         trailing: 10)
 
-      return section
+        let containerGroupSize = NSCollectionLayoutSize(widthDimension:
+                                                UIScreen.main.bounds.width > 400 ? .fractionalWidth(0.45) : .fractionalWidth(0.96),
+                                                        heightDimension:
+                                                UIScreen.main.bounds.width > 400 ? .fractionalWidth(0.55) : .fractionalWidth(1.2))
+        let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize,
+                                                                subitem: subGroup, count: 2)
+
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                heightDimension: .absolute(50))
+        let headerSection = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                        elementKind: MainViewController.sectionHeaderElementKind,
+                                                                        alignment: .topLeading)
+
+        let section = NSCollectionLayoutSection(group: containerGroup)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                        leading: 15,
+                                                        bottom: 10,
+                                                        trailing: 0)
+
+        section.boundarySupplementaryItems = [headerSection]
+        section.orthogonalScrollingBehavior = .groupPaging
+        return section
     }
 
-    func generateSharedlbumsLayout() -> NSCollectionLayoutSection {
+    func peopleAndPlacesCell() -> NSCollectionLayoutSection {
       let itemSize = NSCollectionLayoutSize(
         widthDimension: .fractionalWidth(1.0),
         heightDimension: .fractionalWidth(1.0))
@@ -141,7 +161,7 @@ extension MainViewController {
       return section
     }
 
-    func generateMyAlbumsLayout(isWide: Bool) -> NSCollectionLayoutSection {
+    func mediaFilesTypeCell(isWide: Bool) -> NSCollectionLayoutSection {
       let itemSize = NSCollectionLayoutSize(
         widthDimension: .fractionalWidth(1.0),
         heightDimension: .fractionalHeight(1.0))

@@ -7,7 +7,7 @@
 import Foundation
 import UIKit.UIImage
 
-struct Album {
+struct Album: Hashable {
     let image: UIImage
     let name: String
     let countItems: String

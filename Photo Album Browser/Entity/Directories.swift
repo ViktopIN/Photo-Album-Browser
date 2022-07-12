@@ -10,14 +10,14 @@ import UIKit
 struct MyAlbum {
     static func get() -> [Album] {
         return [
-            Album(image: UIImage(named: "food1")!, name: "Томаты", countItems: "6"),
-            Album(image: UIImage(named: "food2")!, name: "Киви", countItems: "8962"),
-            Album(image: UIImage(named: "food3")!, name: "Watermelon", countItems: "666"),
-            Album(image: UIImage(named: "food4")!, name: "Цветочки", countItems: "1"),
-            Album(image: UIImage(named: "food5")!, name: "Ханни", countItems: "3"),
-            Album(image: UIImage(named: "food6")!, name: "Шампань", countItems: "75"),
-            Album(image: UIImage(named: "food7")!, name: "Кофе", countItems: "12"),
-            Album(image: UIImage(named: "food8")!, name: "Кофе в склянке", countItems: "6")
+            Album(image: UIImage(named: "food01")!, name: "Томаты", countItems: "6"),
+            Album(image: UIImage(named: "food02")!, name: "Киви", countItems: "8962"),
+            Album(image: UIImage(named: "food03")!, name: "Watermelon", countItems: "666"),
+            Album(image: UIImage(named: "food04")!, name: "Цветочки", countItems: "1"),
+            Album(image: UIImage(named: "food05")!, name: "Ханни", countItems: "3"),
+            Album(image: UIImage(named: "food06")!, name: "Шампань", countItems: "75"),
+            Album(image: UIImage(named: "food07")!, name: "Кофе", countItems: "12"),
+            Album(image: UIImage(named: "food08")!, name: "Кофе в склянке", countItems: "6")
         ]
     }
 }

@@ -8,89 +8,88 @@
 import UIKit
 
 class PeopleAndPlacesCell: UICollectionViewCell {
-  static let reuseIdentifer = "featured-album-item-cell-reuse-identifier"
-  let titleLabel = UILabel()
-  let imageCountLabel = UILabel()
-  let featuredPhotoView = UIImageView()
-  let contentContainer = UIView()
+    static let reuseIdentifer = "PeopleAndPlacesCell"
 
-  var title: String? {
-    didSet {
-      configure()
+    private let view: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.masksToBounds = true
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 4
+        return view
+    }()
+
+    private let image: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+
+    private let nameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.font = UIFont.systemFont(ofSize: 15)
+        nameLabel.numberOfLines = 1
+        return nameLabel
+    }()
+
+    private let numberLabel: UILabel = {
+        let numberLabel = UILabel()
+        numberLabel.translatesAutoresizingMaskIntoConstraints = false
+        numberLabel.font = UIFont.systemFont(ofSize: 15)
+        numberLabel.textColor = .systemGray
+        numberLabel.numberOfLines = 1
+        return numberLabel
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        contentView.clipsToBounds = true
+        contentView.addSubview(view)
+        view.addSubview(image)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(numberLabel)
     }
-  }
 
-  var totalNumberOfImages: Int? {
-    didSet {
-      configure()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-  }
 
-  var featuredPhotoURL: URL? {
-    didSet {
-      configure()
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        NSLayoutConstraint.activate([
+            view.heightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.heightAnchor, constant: -45),
+            view.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
+            view.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+            view.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -45)
+        ])
+
+        NSLayoutConstraint.activate([
+            image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            image.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -18),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            numberLabel.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+            numberLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor)
+        ])
     }
-  }
-
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    configure()
-  }
-
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
 }
 
 extension PeopleAndPlacesCell {
-  func configure() {
-    contentContainer.translatesAutoresizingMaskIntoConstraints = false
-
-    contentView.addSubview(featuredPhotoView)
-    contentView.addSubview(contentContainer)
-
-    featuredPhotoView.translatesAutoresizingMaskIntoConstraints = false
-    if let featuredPhotoURL = featuredPhotoURL {
-      featuredPhotoView.image = UIImage(contentsOfFile: featuredPhotoURL.path)
+    func configure(with model: Album) {
+        image.image = model.image
+        nameLabel.text = model.name
+        numberLabel.text = model.countItems
     }
-    featuredPhotoView.layer.cornerRadius = 4
-    featuredPhotoView.clipsToBounds = true
-    contentContainer.addSubview(featuredPhotoView)
-
-    titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    titleLabel.text = title
-    titleLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-    titleLabel.adjustsFontForContentSizeCategory = true
-    contentContainer.addSubview(titleLabel)
-
-    imageCountLabel.translatesAutoresizingMaskIntoConstraints = false
-    if let totalNumberOfImages = totalNumberOfImages {
-      imageCountLabel.text = "\(totalNumberOfImages) photos"
-    }
-    imageCountLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-    imageCountLabel.adjustsFontForContentSizeCategory = true
-    imageCountLabel.textColor = .placeholderText
-    contentContainer.addSubview(imageCountLabel)
-
-    let spacing = CGFloat(10)
-    NSLayoutConstraint.activate([
-      contentContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      contentContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      contentContainer.topAnchor.constraint(equalTo: contentView.topAnchor),
-      contentContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-
-      featuredPhotoView.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor),
-      featuredPhotoView.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor),
-      featuredPhotoView.topAnchor.constraint(equalTo: contentContainer.topAnchor),
-
-      titleLabel.topAnchor.constraint(equalTo: featuredPhotoView.bottomAnchor, constant: spacing),
-      titleLabel.leadingAnchor.constraint(equalTo: featuredPhotoView.leadingAnchor),
-      titleLabel.trailingAnchor.constraint(equalTo: featuredPhotoView.trailingAnchor),
-
-      imageCountLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-      imageCountLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      imageCountLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      imageCountLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-    ])
-  }
 }
+

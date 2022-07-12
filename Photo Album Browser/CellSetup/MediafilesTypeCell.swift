@@ -8,121 +8,87 @@
 import UIKit
 
 class MediafilesTypeCell: UICollectionViewCell {
-  static let reuseIdentifer = "shared-album-item-cell-reuse-identifier"
-  let titleLabel = UILabel()
-  let ownerLabel = UILabel()
-  let featuredPhotoView = UIImageView()
-  let ownerAvatar = UIImageView()
-  let contentContainer = UIView()
+    static let reuseIdentifer = "MediafilesTypeCell"
 
-  let owner: Owner;
+    private let image: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode =  .scaleAspectFit
+        image.tintColor = .systemBlue
+        return image
+    }()
 
-  enum Owner: Int, CaseIterable {
-    case Tom
-    case Matt
-    case Ray
+    private let nameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.font = UIFont.systemFont(ofSize: 20)
+        nameLabel.textColor = .systemBlue
+        nameLabel.numberOfLines = 1
+        return nameLabel
+    }()
 
-    func avatar() -> UIImage {
-      switch self {
-      case .Tom: return #imageLiteral(resourceName: "tom_profile")
-      case .Matt: return #imageLiteral(resourceName: "matt_profile")
-      case .Ray: return #imageLiteral(resourceName: "ray_profile")
-      }
+    private let numberLabel: UILabel = {
+        let numberLabel = UILabel()
+        numberLabel.translatesAutoresizingMaskIntoConstraints = false
+        numberLabel.font = UIFont.systemFont(ofSize: 16)
+        numberLabel.textColor = .systemGray
+        numberLabel.numberOfLines = 1
+        return numberLabel
+    }()
+
+    private let indicatorImageView: UIImageView = {
+        let indicatorImageView = UIImageView()
+        indicatorImageView.translatesAutoresizingMaskIntoConstraints = false
+        indicatorImageView.image = UIImage(systemName: "chevron.right")
+        indicatorImageView.contentMode = .scaleAspectFit
+        indicatorImageView.tintColor = .systemGray
+        indicatorImageView.clipsToBounds = true
+        return indicatorImageView
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        contentView.clipsToBounds = true
+        contentView.addSubview(image)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(numberLabel)
+        contentView.addSubview(indicatorImageView)
     }
 
-    func name() -> String {
-      switch self {
-      case .Tom: return "Tom Elliott"
-      case .Matt: return "Matt Galloway"
-      case .Ray: return "Ray Wenderlich"
-      }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-  }
 
-  var title: String? {
-    didSet {
-      configure()
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        NSLayoutConstraint.activate([
+            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 28),
+            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            indicatorImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            indicatorImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            numberLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -28),
+            numberLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
     }
-  }
-
-  var featuredPhotoURL: URL? {
-    didSet {
-      configure()
-    }
-  }
-
-  override init(frame: CGRect) {
-    self.owner = Owner.allCases.randomElement()!
-    super.init(frame: frame)
-    configure()
-  }
-
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
 }
 
 extension MediafilesTypeCell {
-  func configure() {
-    contentContainer.translatesAutoresizingMaskIntoConstraints = false
-
-    contentView.addSubview(featuredPhotoView)
-    contentView.addSubview(contentContainer)
-
-    featuredPhotoView.translatesAutoresizingMaskIntoConstraints = false
-    if let featuredPhotoURL = featuredPhotoURL {
-      featuredPhotoView.image = UIImage(contentsOfFile: featuredPhotoURL.path)
-    }
-    featuredPhotoView.layer.cornerRadius = 4
-    featuredPhotoView.clipsToBounds = true
-    contentContainer.addSubview(featuredPhotoView)
-
-    titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    titleLabel.text = title
-    titleLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-    titleLabel.adjustsFontForContentSizeCategory = true
-    contentContainer.addSubview(titleLabel)
-
-    ownerLabel.translatesAutoresizingMaskIntoConstraints = false
-    ownerLabel.text = "From \(owner.name())"
-    ownerLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-    ownerLabel.adjustsFontForContentSizeCategory = true
-    ownerLabel.textColor = .placeholderText
-    contentContainer.addSubview(ownerLabel)
-
-    ownerAvatar.translatesAutoresizingMaskIntoConstraints = false
-    ownerAvatar.image = owner.avatar()
-    ownerAvatar.layer.cornerRadius = 15
-    ownerAvatar.layer.borderColor = UIColor.systemBackground.cgColor
-    ownerAvatar.layer.borderWidth = 1
-    ownerAvatar.clipsToBounds = true
-    contentContainer.addSubview(ownerAvatar)
-
-    let spacing = CGFloat(10)
-    NSLayoutConstraint.activate([
-      contentContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      contentContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      contentContainer.topAnchor.constraint(equalTo: contentView.topAnchor),
-      contentContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-
-      featuredPhotoView.leadingAnchor.constraint(equalTo: contentContainer.leadingAnchor),
-      featuredPhotoView.trailingAnchor.constraint(equalTo: contentContainer.trailingAnchor),
-      featuredPhotoView.topAnchor.constraint(equalTo: contentContainer.topAnchor),
-
-      titleLabel.topAnchor.constraint(equalTo: featuredPhotoView.bottomAnchor, constant: spacing),
-      titleLabel.leadingAnchor.constraint(equalTo: featuredPhotoView.leadingAnchor),
-      titleLabel.trailingAnchor.constraint(equalTo: featuredPhotoView.trailingAnchor),
-
-      ownerLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-      ownerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      ownerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      ownerLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-
-      ownerAvatar.heightAnchor.constraint(equalToConstant: 30),
-      ownerAvatar.widthAnchor.constraint(equalToConstant: 30),
-      ownerAvatar.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -spacing),
-      ownerAvatar.bottomAnchor.constraint(equalTo: featuredPhotoView.bottomAnchor, constant: -spacing),
-    ])
-  }
+func configure(with model: Album) {
+    image.image = model.image
+        nameLabel.text = model.name
+        numberLabel.text = model.countItems
+}
 }
