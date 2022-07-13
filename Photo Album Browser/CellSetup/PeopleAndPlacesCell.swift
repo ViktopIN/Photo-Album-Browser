@@ -22,7 +22,8 @@ class PeopleAndPlacesCell: UICollectionViewCell {
     private let image: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         return image
     }()
 
@@ -49,8 +50,8 @@ class PeopleAndPlacesCell: UICollectionViewCell {
         contentView.clipsToBounds = true
         contentView.addSubview(view)
         view.addSubview(image)
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(numberLabel)
+        view.addSubview(nameLabel)
+        view.addSubview(numberLabel)
     }
 
     required init?(coder: NSCoder) {
@@ -61,26 +62,31 @@ class PeopleAndPlacesCell: UICollectionViewCell {
         super.layoutSubviews()
 
         NSLayoutConstraint.activate([
-            view.heightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.heightAnchor, constant: -45),
-            view.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
-            view.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-            view.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -45)
+            view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            view.topAnchor.constraint(equalTo: contentView.topAnchor),
+            view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
 
         NSLayoutConstraint.activate([
-            image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            image.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+                        
+            image.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            image.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            image.topAnchor.constraint(equalTo: view.topAnchor),
+            
+            image.heightAnchor.constraint(equalTo: image.widthAnchor)
         ])
 
         NSLayoutConstraint.activate([
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -18),
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor)
+            nameLabel.topAnchor.constraint(equalTo: image.bottomAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
         NSLayoutConstraint.activate([
-            numberLabel.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
-            numberLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor)
+            numberLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            numberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            numberLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
 }
