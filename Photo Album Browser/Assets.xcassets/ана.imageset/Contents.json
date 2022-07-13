@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "ana-hickman-1600x1200-5089 »by K4Tsis«.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
