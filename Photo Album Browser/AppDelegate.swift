@@ -16,17 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         tabBarController.tabBar.backgroundColor = .systemBackground.withAlphaComponent(0.4)
         
-        let firstViewController = FirstViewController()
+        let firstViewController = UIViewController()
         firstViewController.tabBarItem = UITabBarItem(title: "Медиатека", image: .init(systemName: "photo.fill.on.rectangle.fill"), tag: 0)
         
-        let secondViewController = SecondViewController()
+        let secondViewController = UIViewController()
         secondViewController.tabBarItem = UITabBarItem(title: "Для Вас", image: .init(systemName: "heart.text.square.fill"), tag: 1)
 
         let mainViewController = MainViewController()
         mainViewController.tabBarItem = UITabBarItem(title: "Альбомы", image: .init(systemName: "rectangle.stack.fill"), tag: 2)
         let mainViewControllerNavigation = UINavigationController(rootViewController: mainViewController)
         
-        let fourthViewController = FourthViewController()
+        let fourthViewController = UIViewController()
         fourthViewController.tabBarItem = UITabBarItem(title: "Поиск", image: .init(systemName: "magnifyingglass"), tag: 3)
         
         tabBarController.setViewControllers([
