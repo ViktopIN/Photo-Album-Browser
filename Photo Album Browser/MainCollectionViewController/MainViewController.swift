@@ -73,18 +73,17 @@ extension MainViewController {
       collectionView.register(MyAlbumCell.self, forCellWithReuseIdentifier: MyAlbumCell.reuseIdentifer)
       collectionView.register(PeopleAndPlacesCell.self, forCellWithReuseIdentifier: PeopleAndPlacesCell.reuseIdentifer)
       collectionView.register(MediafilesTypeCell.self, forCellWithReuseIdentifier: MediafilesTypeCell.reuseIdentifer)
-      collectionView.register(
-        HeadView.self,
-      forSupplementaryViewOfKind: MainViewController.sectionHeaderElementKind,
-      withReuseIdentifier: HeadView.reuseIdentifier)
+      collectionView.register(HeadView.self,
+                              forSupplementaryViewOfKind: MainViewController.sectionHeaderElementKind,
+                              withReuseIdentifier: HeadView.reuseIdentifier)
       collectionView.register(AlbumHeadLayout.self,
                               forSupplementaryViewOfKind: MainViewController.sectionHeaderElementKind,
                               withReuseIdentifier: AlbumHeadLayout.reuseIdentifier)
-    albumsCollectionView = collectionView
+      albumsCollectionView = collectionView
   }
     
     func generateLayout() -> UICollectionViewLayout {
-      let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
         layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
     
 
@@ -100,7 +99,6 @@ extension MainViewController {
         return layout
     }
     
-    
     func generateMyAlbumsLayout() -> NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -108,16 +106,16 @@ extension MainViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
         let groupSize = NSCollectionLayoutSize(
-          widthDimension: .fractionalWidth(CGFloat(UIScreen.main.bounds.width > 500 ? 0.23 : 0.46)),
-          heightDimension: .fractionalWidth(CGFloat(UIScreen.main.bounds.width > 500 ? 0.27 : 1.1)))
+            widthDimension: .fractionalWidth(CGFloat(UIScreen.main.bounds.width > 500 ? 0.23 : 0.46)),
+            heightDimension: .fractionalWidth(CGFloat(UIScreen.main.bounds.width > 500 ? 0.27 : 1.1)))
         let group = UIScreen.main.bounds.width > 500 ? NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1) : NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 2)
         group.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
 
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                 heightDimension: .absolute(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-          layoutSize: headerSize,
-          elementKind: MainViewController.sectionHeaderElementKind, alignment: .top)
+            layoutSize: headerSize,
+            elementKind: MainViewController.sectionHeaderElementKind, alignment: .top)
 
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [sectionHeader]
@@ -169,7 +167,8 @@ extension MainViewController {
 
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
 
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                heightDimension: .absolute(50))
         let headerSection = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
                                                                         elementKind: MainViewController.sectionHeaderElementKind,
                                                                         alignment: .topLeading)

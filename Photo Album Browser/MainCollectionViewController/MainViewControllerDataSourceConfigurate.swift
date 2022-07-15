@@ -11,7 +11,6 @@ extension MainViewController {
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Album>(collectionView: albumsCollectionView)
         { collectionView, indexPath, itemIdentifier in
-
             let sectionType = Section.allCases[indexPath.section]
 
             switch sectionType {
