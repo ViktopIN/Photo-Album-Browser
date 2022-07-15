@@ -107,12 +107,10 @@ extension MainViewController {
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let groupFractionalWidth = 0.46
-        let groupFractionalHeight: Float = 1.1
         let groupSize = NSCollectionLayoutSize(
-          widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
-          heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 2)
+          widthDimension: .fractionalWidth(CGFloat(UIScreen.main.bounds.width > 500 ? 0.23 : 0.46)),
+          heightDimension: .fractionalWidth(CGFloat(UIScreen.main.bounds.width > 500 ? 0.27 : 1.1)))
+        let group = UIScreen.main.bounds.width > 500 ? NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1) : NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 2)
         group.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
 
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -138,11 +136,9 @@ extension MainViewController {
                                               heightDimension: .fractionalWidth(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        let groupFractionalWidth = 0.46
-        let groupFractionalHeight: Float = 0.55
         let groupSize = NSCollectionLayoutSize(
-          widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
-          heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
+          widthDimension: .fractionalWidth(CGFloat(UIScreen.main.bounds.width > 500 ? 0.23 : 0.46)),
+          heightDimension: .fractionalWidth(CGFloat(UIScreen.main.bounds.width > 500 ? 0.27 : 0.55)))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
 
